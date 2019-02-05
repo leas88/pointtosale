@@ -11,19 +11,19 @@ class MY_Controller extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+//        pr('sssss 2');
         $this->lang->load('interface', 'spanish');
+        $this->load->library('niveles_acceso');
         $this->load->config('general');
-        $this->load->helper('form');
 
-        $usuario = $this->get_datos_sesion(En_datos_sesion::ID_USER);
+        $usuario = $this->get_datos_sesion(En_datos_sesion::ID_USER);//Identificador del usuario
         if (!is_null($usuario)) {
             $this->load->model('Menu_model', 'menu');
-            $this->load->model('Usuario_model', 'us');
-            $roles_completo = $this->us->get_rol_acceso($usuario); //Obtiene roles del usuario
-            $roles = $this->us->get_limpia_array_rol($roles_completo); //Obtiene roles del usuario
-
-            $menu = $this->menu->get_modulos_acceso($roles); //Obtiene el menu 
-            $this->template->setMenu($menu); //Asigna el menu
+            $accesos = $this->menu->get_modulos_acceso($usuario); //Obtiene el menu o los niveles de acceso
+            $this->niveles_acceso->setModulos($accesos);
+            $this->template->setMenu($this->niveles_acceso->getMenu()); //Asigna y obtiene el menu generado
+        }else{
+//            $menu = $this->menu->get_modulos_acceso(null); //Obtiene el menu 
         }
     }
 

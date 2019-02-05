@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Description of HBitacora
  *
- * @author chrigarc
+ * @author leas
  */
 class Loader {
 
@@ -20,12 +20,11 @@ class Loader {
 
     function load() {
         $this->acceso();
+//        pr('$usuario aquí 1');
     }
 
     private function acceso() {
         $CI = & get_instance(); //Obtiene la insatancia del super objeto en codeigniter para su uso directo
-//        echo $CI->load->view('template/sin_acceso', $datos_, true);
-//        return json_encode($array_result);
         $CI->load->helper('url');
         $CI->load->library('session');
 
@@ -54,15 +53,15 @@ class Loader {
         $url = '/' . $controlador . '/' . $accion;
 
         $CI->load->model('Menu_model', 'menu');
-        $CI->load->model('Usuario_model', 'us');
-        $roles_completo = $CI->us->get_rol_acceso($id_usuario); //Obtiene roles del usuario
-        $roles = $CI->us->get_limpia_array_rol($roles_completo); //Obtiene roles del usuario
+//        $CI->load->model('Usuario_model', 'us');
+//        $roles_completo = $CI->us->get_rol_acceso($id_usuario); //Obtiene roles del usuario
+//        $roles = $CI->us->get_limpia_array_rol($roles_completo); //Obtiene roles del usuario
 
-        $menu = $CI->menu->get_modulos_acceso($roles); //Obtiene el menu 
-        
-        foreach ($menu as $val ){
-            if($val['url'] == $url){
-                return true;;
+        $modulos = $CI->niveles_acceso->getModulos(); //Obtiene el menu 
+
+        foreach ($modulos as $val) {
+            if ($val['url'] == $url) {
+                return true;
             }
         }
 

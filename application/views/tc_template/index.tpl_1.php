@@ -84,6 +84,7 @@
                             <li><a href="<?php echo site_url(); ?>/inicio/cerrar_sesion"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
                             <li class="dropdown">
                             <li><a href="#" data-toggle="modal" data-target="#contacto-modal">Contacto</a></li>
+                            </li>
                         </ul>
                     </div>
                 </div>

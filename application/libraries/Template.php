@@ -9,9 +9,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Template {
 
     private $elements;
-    private $element_seccion;
-    private $comprobante;
-    private $elements_comprobante;
     private $elements_modal;
     var $lang;
     var $lang_text;
