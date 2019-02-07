@@ -25,9 +25,6 @@ class Loader {
 
     private function acceso() {
         $CI = & get_instance(); //Obtiene la insatancia del super objeto en codeigniter para su uso directo
-        $CI->load->helper('url');
-        $CI->load->library('session');
-
         $controlador = $CI->uri->rsegment(1);  //Controlador actual o dirección actual
         $accion = $CI->uri->rsegment(2);  //Función que se llama en el controlador
 
@@ -51,11 +48,7 @@ class Loader {
         $controlador = $CI->uri->rsegment(1);  //Controlador actual o dirección actual
         $accion = $CI->uri->rsegment(2);  //Función que se llama en el controlador
         $url = '/' . $controlador . '/' . $accion;
-
-        $CI->load->model('Menu_model', 'menu');
-//        $CI->load->model('Usuario_model', 'us');
-//        $roles_completo = $CI->us->get_rol_acceso($id_usuario); //Obtiene roles del usuario
-//        $roles = $CI->us->get_limpia_array_rol($roles_completo); //Obtiene roles del usuario
+//        pr($CI);
 
         $modulos = $CI->niveles_acceso->getModulos(); //Obtiene el menu 
 

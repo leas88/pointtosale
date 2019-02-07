@@ -12,9 +12,9 @@ class MY_Controller extends CI_Controller {
     function __construct() {
         parent::__construct();
 //        pr('sssss 2');
-        $this->lang->load('interface', 'spanish');
+//        $this->lang->load('interface', 'spanish');
+//        $this->load->config('general');
         $this->load->library('niveles_acceso');
-        $this->load->config('general');
 
         $usuario = $this->get_datos_sesion(En_datos_sesion::ID_USER);//Identificador del usuario
         if (!is_null($usuario)) {

@@ -34,7 +34,7 @@ CREATE TABLE `catalog_address` (
   PRIMARY KEY (`id_address`),
   KEY `id_person` (`id_person`),
   CONSTRAINT `fk_person_addres` FOREIGN KEY (`id_person`) REFERENCES `catalog_person` (`id_person`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of catalog_address
@@ -77,7 +77,7 @@ CREATE TABLE `catalog_person` (
   `curp` varchar(50) DEFAULT NULL,
   `rfc` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_person`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of catalog_person

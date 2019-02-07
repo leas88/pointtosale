@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title><?php echo isset($texts["title"]) ? $texts["title"] . "::" : ""; ?> Administra</title>
+        <title><?php echo isset($title) ? $title  : ""; ?></title>
 
         <!-- Custom fonts for this template-->
 
@@ -244,9 +244,7 @@
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
-                        <?php
-                        echo $main_content;
-                        ?>
+                        <?php echo $main_content; ?>
                     </div>
                     <!-- /.container-fluid -->
 

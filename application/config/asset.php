@@ -55,11 +55,12 @@ $config['css_path'] 		= 'assets/css/';
 $config['download_path'] 	= 'assets/download/';
 $config['less_path'] 		= 'assets/less/';
 $config['img_loader'] 		= 'loader.gif';
-$config['js_path'] 			= 'assets/js/';
+$config['js_path'] 		= 'assets/js/';
 $config['img_path'] 		= 'assets/img/';
 $config['swf_path'] 		= 'assets/swf/';
 $config['upload_path'] 		= 'assets/upload/';
 $config['xml_path'] 		= 'assets/xml/';
+$config['jsgrid_path'] 		= 'assets/jsgrid-1.5.3/';
 
 
 /* End of file asset.php */
