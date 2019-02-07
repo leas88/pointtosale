@@ -25,10 +25,9 @@ $(function () {
 
     $.ajax({
         type: "GET",
-        url: "http://localhost/tools/jsgrid/countries/"
-    }).done(function (countries) {
-        countries.unshift({id: "0", name: ""});
-
+        url: site_url + '/' + config_grid.catalogos.url
+    }).done(function (data) {
+//        data.unshift({id: "0", name: ""});
         $("#" + config_grid.name_grid).jsGrid({
             height: "70%",
             width: "100%",
@@ -79,7 +78,7 @@ $(function () {
             fields: (function () {
                 for (var elemento  in column) {
                     if (typeof column[elemento].items !== 'undefined') {
-                        column[elemento].items = eval(column[elemento].items);
+//                        column[elemento].items = eval(column[elemento].items);
                     }
                 }
                 return column;

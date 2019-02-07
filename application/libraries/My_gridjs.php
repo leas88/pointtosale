@@ -30,7 +30,8 @@ class My_gridjs {
             GET = "GET",
             INSERTAR = "POST",
             ACUALIZAR = "PUT",
-            ELIMINAR = "DELETE"
+            ELIMINAR = "DELETE",
+            CATALOGOS = "catalogos"
 
     ;
 
@@ -54,8 +55,10 @@ class My_gridjs {
                 My_gridjs::GET => ['url' => ($controller . '/accion'), 'funcion' => 'loadData'],
                 My_gridjs::INSERTAR => ['url' => ($controller . '/accion'), 'funcion' => 'insertItem'],
                 My_gridjs::ACUALIZAR => ['url' => ($controller . '/accion'), 'funcion' => 'updateItem'],
-                My_gridjs::ELIMINAR => ['url' =>($controller . '/accion') , 'funcion' => 'deleteItem']
+                My_gridjs::ELIMINAR => ['url' =>($controller . '/accion') , 'funcion' => 'deleteItem'],
+                
             ],
+            My_gridjs::CATALOGOS => ['url' =>($controller . '/catalogos')]
         ];
         $this->assets = [
             'css' => array(

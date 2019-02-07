@@ -28,7 +28,7 @@ class Almacen extends MY_Controller {
         $my_grid->setColumns(null, ['name' => 'name', 'title' => 'Nombre', 'type' => 'text', 'width' => 150]);
         $my_grid->setColumns(null, ["name" => "age", "title" => "Age", "type" => "number", "width" => 50, "filtering" => false]);
 //        $my_grid->setColumns(null, ['name'=>'country_id', 'title'=>'Ciudad', 'type' => 'select', 'width'=> 150, 'items'=> '{{countries}}', 'valueField'=>'id', 'textField'=>"name"]);
-        $my_grid->setColumns(null, ['name' => 'country_id', 'title' => 'Ciudad', 'type' => 'select', 'width' => 150, 'items' => "countries", 'valueField' => 'id', 'textField' => "name"]);
+//        $my_grid->setColumns(null, ['name' => 'country_id', 'title' => 'Ciudad', 'type' => 'select', 'width' => 150, 'items' => "countries", 'valueField' => 'id', 'textField' => "name"]);
         $my_grid->setColumns(null, ['type' => 'control']);
         $content = $my_grid->get_template();
 //        pr($content);
@@ -43,7 +43,7 @@ class Almacen extends MY_Controller {
         $result = [];
         switch ($_SERVER["REQUEST_METHOD"]) {
             case "GET":
-
+//                $result[] = ['name' => 'Luis', 'age' => 78, 'country_id' => 1];
                 break;
 
             case "POST":
@@ -60,6 +60,11 @@ class Almacen extends MY_Controller {
                 break;
         }
 
+        header("Content-Type: application/json");
+        echo json_encode($result);
+    }
+
+    public function catalogos() {
         header("Content-Type: application/json");
         echo json_encode($result);
     }
