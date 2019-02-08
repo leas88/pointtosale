@@ -27,6 +27,7 @@ class Almacen extends MY_Controller {
 //        $my_grid->setConfigGrid($config_grid);
         $my_grid->setColumns(null, ['name' => 'name', 'title' => 'Nombre', 'type' => 'text', 'width' => 150]);
         $my_grid->setColumns(null, ["name" => "age", "title" => "Age", "type" => "number", "width" => 50, "filtering" => false]);
+        $my_grid->setColumns(null, ["name" => "ap", "title" => "Apellid paterno", "type" => "text", "width" => 50, "filtering" => true]);
 //        $my_grid->setColumns(null, ['name'=>'country_id', 'title'=>'Ciudad', 'type' => 'select', 'width'=> 150, 'items'=> '{{countries}}', 'valueField'=>'id', 'textField'=>"name"]);
 //        $my_grid->setColumns(null, ['name' => 'country_id', 'title' => 'Ciudad', 'type' => 'select', 'width' => 150, 'items' => "countries", 'valueField' => 'id', 'textField' => "name"]);
         $my_grid->setColumns(null, ['type' => 'control']);
