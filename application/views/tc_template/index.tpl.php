@@ -9,22 +9,26 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title><?php echo isset($title) ? $title  : ""; ?></title>
+        <title><?php echo isset($title) ? $title : ""; ?></title>
 
         <!-- Custom fonts for this template-->
 
         <?php echo css('tools/all.min.css'); ?>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-        <!-- Custom styles for this template-->
+        <!--Custom styles for this template-->
         <?php echo css('app/sb-admin-2.min.css'); ?>
         <script type="text/javascript">
             var url = "<?php echo base_url(); ?>";
             var site_url = "<?php echo site_url(); ?>";
             var img_url_loader = "<?php echo base_url('assets/img/loader.gif'); ?>";
         </script>
+
         <?php echo js("tools/jquery.min.js"); ?>
         <?php echo js("tools/jquery.ui.min.js"); ?>
+        <!-- Bootstrap core JavaScript-->
+
+
+
     </head>
 
     <body id="page-top">
@@ -243,9 +247,11 @@
                     <!-- End of Topbar -->
 
                     <!-- Begin Page Content -->
-                    <div class="container-fluid">
-                        <?php echo $main_content; ?>
-                    </div>
+                    <!--<div class="container-fluid">-->
+                    <!--<div class="container-fluid">-->
+
+                    <?php echo $main_content; ?>
+                    <!--</div>-->
                     <!-- /.container-fluid -->
 
                 </div>
@@ -298,9 +304,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Bootstrap core JavaScript-->
-
         <?php echo js("tools/bootstrap.bundle.min.js"); ?>
         <!-- Core plugin JavaScript-->
         <?php echo js("tools/jquery.easing.min.js"); ?>
@@ -313,8 +316,8 @@
         <?php echo js("tools/Chart.min.js"); ?>
 
         <!-- Page level custom scripts -->
-        <?php echo js("app/plantilla/chart-area-demo.js"); ?>
-        <?php echo js("app/plantilla/chart-pie-demo.js"); ?>
+        <?php // echo js("app/plantilla/chart-area-demo.js"); ?>
+        <?php // echo js("app/plantilla/chart-pie-demo.js"); ?>
 
     </body>
 

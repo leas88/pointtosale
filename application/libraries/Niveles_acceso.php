@@ -36,7 +36,7 @@ class Niveles_acceso {
     private function setModulosMenu($modulos) {
         $tmp = array();
         $tipo_modulo_menu = array('MENU', 'MODAL');
-        pr($this->ruta_actual);
+//        pr($this->ruta_actual);
         foreach ($modulos as $value) {
             if (in_array($value['type_module'], $tipo_modulo_menu)) {
                 if (is_null($value['module_pather'])) {//Es un padre inicial

@@ -45,44 +45,48 @@ $(function () {
                         loadData: function (filter) {
                             console.log(filter);
                             if (typeof get_ !== 'undefined') {
-                                return $.ajax({
+                                var data = $.ajax({
                                     type: "GET",
                                     url: site_url + '/' + get_.url,
                                     data: filter
                                 });
+                                console.log(data);
+                                return  data;
                             }
                         },
                         insertItem: function (item) {
-                            return $.ajax({
+                            var result = $.ajax({
                                 type: "POST",
                                 url: site_url + '/' + insert_.url,
                                 data: item
                             });
+                            return result;
                         },
                         updateItem: function (item) {
                             return $.ajax({
-                                type: "PUT",
+                                type: "POST",
                                 url: site_url + '/' + update_.url,
                                 data: item
                             });
                         },
                         deleteItem: function (item) {
                             return $.ajax({
-                                type: "DELETE",
+                                type: "POST",
                                 url: site_url + '/' + delete_.url,
                                 data: item
                             });
                         }
                     }
             ,
-            fields: (function () {
-                for (var elemento  in column) {
-                    if (typeof column[elemento].items !== 'undefined') {
-//                        column[elemento].items = eval(column[elemento].items);
-                    }
-                }
-                return column;
-            })()
+            fields:
+                    (function () {
+                        for (var elemento  in column) {
+                            if (typeof column[elemento].items !== 'undefined') {
+                                column[elemento].items = eval(column[elemento].items);
+                            }
+                        }
+                        return column;
+                    })()
 //            fields: column
         });
 

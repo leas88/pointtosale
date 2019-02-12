@@ -13,16 +13,8 @@ class My_gridjs {
     private $elementos;
     private $assets;
     private $config_grid;
-    private $update_config;
-    private $name_grid;
-    private $url_delete;
-    private $url_insert;
-    private $url_update;
-    private $url_get;
-    private $data;
-    private $columns;
-    private $js;
-    private $css;
+    private $atributos_model;
+    private $controller;
 
     const NAME_GRID = "name_grid",
             FUNCIONES_ACTIVAS = "funciones",
@@ -41,47 +33,50 @@ class My_gridjs {
 
     private function init() {
         $this->CI = & get_instance();
-        $controller = $this->CI->uri->rsegment(1);
+        $this->controller = $this->CI->uri->rsegment(1);
+        $this->setController($this->controller);
 //        $accion = $this->CI->uri->rsegment(2);
 //        $url = $this->CI->uri->uri_string;
 //        pr($this->CI->uri->rsegment(1));
         $this->config_grid = [
-            My_gridjs::NAME_GRID => 'jsgrid',
+            My_gridjs::NAME_GRID => 'jsGrid',
             My_gridjs::FUNCIONES_ACTIVAS => [
-//                My_gridjs::GET => ['url' => ($controller . '/get'), 'funcion' => 'loadData'],
-//                My_gridjs::INSERTAR => ['url' => ($controller . '/insertar'), 'funcion' => 'insertItem'],
-//                My_gridjs::ACUALIZAR => ['url' => ($controller . '/actualizar'), 'funcion' => 'updateItem'],
-//                My_gridjs::ELIMINAR => ['url' =>($controller . '/eliminar') , 'funcion' => 'deleteItem']
-                My_gridjs::GET => ['url' => ($controller . '/accion'), 'funcion' => 'loadData'],
-                My_gridjs::INSERTAR => ['url' => ($controller . '/accion'), 'funcion' => 'insertItem'],
-                My_gridjs::ACUALIZAR => ['url' => ($controller . '/accion'), 'funcion' => 'updateItem'],
-                My_gridjs::ELIMINAR => ['url' =>($controller . '/accion') , 'funcion' => 'deleteItem'],
-                
+                My_gridjs::GET => ['url' => ($this->controller . '/get'), 'funcion' => 'loadData'],
+                My_gridjs::INSERTAR => ['url' => ($this->controller . '/insertar'), 'funcion' => 'insertItem'],
+                My_gridjs::ACUALIZAR => ['url' => ($this->controller . '/actualizar'), 'funcion' => 'updateItem'],
+                My_gridjs::ELIMINAR => ['url' => ($this->controller . '/delete'), 'funcion' => 'deleteItem']
+//                My_gridjs::GET => ['url' => ($this->controller . '/accion'), 'funcion' => 'loadData'],
+//                My_gridjs::INSERTAR => ['url' => ($this->controller . '/accion'), 'funcion' => 'insertItem'],
+//                My_gridjs::ACUALIZAR => ['url' => ($this->controller . '/accion'), 'funcion' => 'updateItem'],
+//                My_gridjs::ELIMINAR => ['url' => ($this->controller . '/accion'), 'funcion' => 'deleteItem'],
             ],
-            My_gridjs::CATALOGOS => ['url' =>($controller . '/catalogos')]
+            My_gridjs::CATALOGOS => ['url' => ($this->controller . '/catalogos')]
         ];
         $this->assets = [
             'css' => array(
                 css('jsgrid.css', 'all', 'css_gridjs_url'),
                 css('jsgrid-theme.css', 'all', 'css_gridjs_url')
             ),
-            'js' => array(js('jsgrid.js', array(), 'jsgrid_url')),
+            'js' => array(
+                js('jsgrid.js', array(), 'jsgrid_url'),
+            ),
             'cssmin' => array(
                 css('jsgrid.min.css', 'all', 'css_gridjs_url'),
                 css('jsgrid-theme.min.css', 'all', 'css_gridjs_url')
             ),
             'jsmin' => array(js('jsgrid.min.js', array(), 'jsgrid_url')),
         ];
+        $this->atributos_model = array();
         $this->elementos = [
             "css" => $this->assets['cssmin'],
             "js" => $this->assets['jsmin'],
             "control_js" => array(js('tools/control_jsgrid.js')),
+//            "control_js" => array(js('tools/sample.js')),
             "config_grid" => $this->config_grid,
             "data" => null,
             "column" => null,
             "url_controller" => array(),
         ];
-        $this->update_config = FALSE;
     }
 
     public function get_template($view = "jsgrid/default.tpl.php") {
@@ -99,7 +94,6 @@ class My_gridjs {
 
     function setElementos($elementos) {
         $this->elementos = $elementos;
-        $this->update_config = true;
     }
 
     function setData($data) {
@@ -112,6 +106,14 @@ class My_gridjs {
         } else {
             $this->elementos['url_controller'][$field] = $value;
         }
+    }
+
+    function getController() {
+        return $this->controller;
+    }
+
+    function setController($controller) {
+        $this->controller = $controller;
     }
 
     function setColumns($field, $value = null) {
@@ -127,11 +129,11 @@ class My_gridjs {
     }
 
     function setJs($min = true) {
-        $this->elementos['js'] = ($min ) ? $this->assets['cssmin'] : $this->assets['css'];
+        $this->elementos['js'] = ($min) ? $this->assets['jsmin'] : $this->assets['js'];
     }
 
     function setCss($min = true) {
-        $this->elementos['css'] = ($min ) ? $this->assets['cssmin'] : $this->assets['css'];
+        $this->elementos['css'] = ($min) ? $this->assets['cssmin'] : $this->assets['css'];
     }
 
     function setConfigGrid($field, $value = null) {
@@ -140,6 +142,18 @@ class My_gridjs {
         } else {
             $this->elementos['config_grid'][$field] = $value;
         }
+    }
+
+    function setNameGrid($nameGrid = 'jsgrid') {
+        $this->elementos['config_grid'][My_gridjs::NAME_GRID] = $nameGrid;
+    }
+
+    function setfuncionesOperacion($type = My_gridjs::GET, $url) {
+        $this->elementos['config_grid'][My_gridjs::FUNCIONES_ACTIVAS][$type] = $url;
+    }
+
+    function setCatalogos($catalogos) {
+        $this->elementos['config_grid'][My_gridjs::CATALOGOS] = $catalogos;
     }
 
 }
