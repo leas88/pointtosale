@@ -10,12 +10,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Niveles_acceso {
 
     private $modulos;
+    private $cve_modulos;
+    private $config_extra;
     private $modulosMenu;
     private $html;
     private $ruta_actual;
 
     public function __construct() {
         $this->html = '';
+        $this->cve_modulos = [];
+        $this->config_extra = [];
 //        $CI = & get_instance(); //Obtiene la insatancia del super objeto en codeigniter para su uso directo
 //        $this->ruta_actual = '/' . $CI->uri->rsegment(1) . '/' . $CI->uri->rsegment(2);  //Controlador actual o dirección actual
     }
@@ -35,7 +39,7 @@ class Niveles_acceso {
 
     private function setModulosMenu($modulos) {
         $tmp = array();
-        $tipo_modulo_menu = array('MENU', 'MODAL');
+        $tipo_modulo_menu = array('MENU', 'MODAL', 'MENU_LIBRE', 'MODAL_LIBRE');
 //        pr($this->ruta_actual);
         foreach ($modulos as $value) {
             if (in_array($value['type_module'], $tipo_modulo_menu)) {
@@ -56,6 +60,7 @@ class Niveles_acceso {
                     }
                 }
             }
+            array_push($this->cve_modulos, $value['cve_module']);
         }
         $this->modulosMenu = $tmp;
     }
@@ -177,6 +182,24 @@ class Niveles_acceso {
         }
 //        <a class = "collapse-item" href = "buttons.html"></a >
         return $html;
+    }
+
+    /**
+     * 
+     * @return type array con los modulos para buscar configuracion extra
+     */
+    function getCvesModulosAcceso() {
+        return $this->cve_modulos;
+    }
+
+    function setGeneraConfiguaracionExtra($configuracion_extra) {
+        foreach ($configuracion_extra as $value) {
+            $this->config_extra[$value['cve_cong_extra']] = $value;
+        }
+    }
+
+    function getConfiguaracionExtra() {
+        return $this->config_extra;
     }
 
 }

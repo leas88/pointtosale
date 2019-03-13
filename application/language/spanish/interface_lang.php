@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Archivo que contiene los textos del sistema
  * Contrucción del índice.
@@ -40,12 +41,13 @@ $lang['interface'] = array(
         'eliminacion' => 'Se ha eliminado correctamente.',
         'error' => 'Ocurrió un error, por favor intentelo de nuevo más tarde.',
     ),
-);
-
-$lang['formulario']['user'] = 'Ingresar usuario';
-$lang['formulario']['passwd'] = 'Ingresar contraseña';
-$lang['formulario']['captcha'] = 'Ingresar código de seguridad';
-
-$lang['mensajes'] = array(
-    3=> 'Usuario inválido', 2=>'Contraseña incorrecta'
+    'formulario' => array(
+        'user' => 'Ingresar usuario',
+        'passwd' => 'Ingresar contraseña',
+        'captcha' => 'Ingresar código de seguridad',
+        'titulo_iniciar_sesion' => 'Iniciar sesión',
+    ),
+    'mensajes' => array(
+        3 => 'Usuario inválido', 2 => 'Contraseña incorrecta'
+    )
 );

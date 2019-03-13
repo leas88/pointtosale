@@ -4,8 +4,7 @@
         <meta charset="UTF-8">
         <title><?php echo isset($texts["title"]) ? $texts["title"] . "::" : ""; ?> Ingenia</title>
         <?php echo css('tools/bootstrap.css'); ?>
-        <?php echo css('app/style_login_two.css'); ?>
-        <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+        <?php echo css('tools/style_login.css'); ?>
         <?php echo js('tools/captcha.js'); ?>
         <script type="text/javascript">
             var url = "<?php echo base_url(); ?>";

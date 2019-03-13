@@ -143,11 +143,11 @@ function data_ajax_post(path, form_recurso, elemento_resultado) {
  * @returns {undefined}
  */
 function get_mensaje_general(mensaje, tipo_mensaje, timeout) {
-    $('#mensaje_error_div').removeClass('alert-danger').removeClass('alert-success').removeClass('alert-info').removeClass('alert-warning');
-    $('#mensaje_error_div').addClass('alert-' + tipo_mensaje);
-    $('#mensaje_error').html(mensaje);
-    $('#div_error').show();
-    setTimeout("$('#div_error').hide()", timeout);
+    $('#mensaje').removeClass('alert-danger').removeClass('alert-success').removeClass('alert-info').removeClass('alert-warning');
+    $('#mensaje').addClass('alert-' + tipo_mensaje);
+    $('#mensaje').html(mensaje);
+    $('#padre_mensaje').show();
+    setTimeout("$('#padre_mensaje').hide()", timeout);
 }
 /**
  * 

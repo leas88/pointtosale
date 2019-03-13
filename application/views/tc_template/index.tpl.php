@@ -244,6 +244,13 @@
                         </ul>
 
                     </nav>
+                    <div id="padre_mensaje" class="card alert-success text-white shadow" style="display: none">
+                        <div class="card-body">
+                            <div id="mensaje" class="text-white-50 small"></div>
+                        </div>
+                    </div>
+
+                    <br>
                     <!-- End of Topbar -->
 
                     <!-- Begin Page Content -->
@@ -314,6 +321,7 @@
 
         <!-- Page level plugins -->
         <?php echo js("tools/Chart.min.js"); ?>
+        <?php echo js("tools/app_general.js"); ?>
 
         <!-- Page level custom scripts -->
         <?php // echo js("app/plantilla/chart-area-demo.js"); ?>

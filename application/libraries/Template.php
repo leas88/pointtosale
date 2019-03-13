@@ -41,7 +41,6 @@ class Template {
             "modal_cuerpo" => null, //Cuerpo del modal, contenido reelevante
             "modal_pie" => null, //Píe del modal, normalmente se usa para disponer de un botón de cerrar y/o botones de guardado u actualización de algun formulario
         );
-        
     }
 
 

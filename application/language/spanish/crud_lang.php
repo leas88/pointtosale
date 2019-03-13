@@ -19,19 +19,9 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-//$lang['interface_'][''][''] = '';
-//$lang['interface']['registro']['texto_bienvenida'] = 'Hola mundo';
-$lang['general'] = array(
-    'cancelar' => 'Cancelar',
-    'guardar' => 'Guardar',
-    'actualizar' => 'Actualizar',
-    'actualizar_general' => 'Actualizar datos generales',
-);
-
-//$lang['interface_registro_profesor'] = 'Impresión de texto prueba';
-//$lang['interface_otro_mensaje'] = '&lsaquo; Primero';
-
-$lang['form_registro'] = array(
-    'titulo' => 'Registro',
-    'captcha' => 'Captcha'
+$lang['crud'] = array(
+    'msj_insert_succes' => 'El registro se agrego correctamente',
+    'msj_update_succes' => 'El regstro se actualización correctamente',
+    'msj_delete_succes' => 'El registro se elimino correctamente',
+    'msj_danger' => 'Ocurrio un error. Por favor intentelo nuevamente',
 );

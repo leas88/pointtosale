@@ -31,10 +31,10 @@ class Loader {
         $url = $controlador . '/' . $accion;
 
         if (!in_array($url, Loader::$libre_acceso)) { //cambiar para localizar modulos de libre acceso como login
-            $ingenia = $CI->session->userdata('ingenia');
+            $administra_sistema = $CI->session->userdata(EnGen::KEYSESION_DATA);
 
-            if (!is_null($ingenia) && isset($ingenia['usuario'][En_datos_sesion::ID_USER])) {
-                $usuario = $ingenia['usuario'][En_datos_sesion::ID_USER];
+            if (!is_null($administra_sistema) && isset($administra_sistema[EnGen::KEYSESIONCOMF_USUARIO][EnGen::KEYSESIONDATA_ID])) {
+                $usuario = $administra_sistema[EnGen::KEYSESIONCOMF_USUARIO][EnGen::KEYSESIONDATA_ID];
                 if (!$this->verifica_permiso($CI, $usuario)) {
                     redirect(site_url());
                 }

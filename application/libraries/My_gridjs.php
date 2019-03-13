@@ -55,14 +55,16 @@ class My_gridjs {
         $this->assets = [
             'css' => array(
                 css('jsgrid.css', 'all', 'css_gridjs_url'),
-                css('jsgrid-theme.css', 'all', 'css_gridjs_url')
+                css('jsgrid-theme.css', 'all', 'css_gridjs_url'),
+                css('jsgrid.css')
             ),
             'js' => array(
                 js('jsgrid.js', array(), 'jsgrid_url'),
             ),
             'cssmin' => array(
                 css('jsgrid.min.css', 'all', 'css_gridjs_url'),
-                css('jsgrid-theme.min.css', 'all', 'css_gridjs_url')
+                css('jsgrid-theme.min.css', 'all', 'css_gridjs_url'),
+                css('jsgrid.css')
             ),
             'jsmin' => array(js('jsgrid.min.js', array(), 'jsgrid_url')),
         ];
@@ -76,6 +78,7 @@ class My_gridjs {
             "data" => null,
             "column" => null,
             "url_controller" => array(),
+            "textjsgrid" => get_elementos_lenguaje([EnGen::LANG_JSGRID]),
         ];
     }
 
@@ -154,6 +157,16 @@ class My_gridjs {
 
     function setCatalogos($catalogos) {
         $this->elementos['config_grid'][My_gridjs::CATALOGOS] = $catalogos;
+    }
+
+    /**
+     * 
+     * @param type $ruta_js_control
+     * array con las rutas de los archivos que se ocuparan para la carga de los 
+     * js para mostrar el jsgrid
+     */
+    function setControlGrid($ruta_js_control) {
+        $this->elementos['control_js'] = $ruta_js_control;
     }
 
 }

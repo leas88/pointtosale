@@ -74,7 +74,8 @@ class Catalogos_generales extends CI_Model {
         return $resultArray;
     }
 
-    public function delete_registro_general($entidad, $array_where) {
+    public function delete_registro_general($entidad, $array_where, $texts = []) {
+        $result = [EnGen::KEYRESP_JSON => EnGen::RESP_DANGER, EnGen::KEYRESP_MESSAJE => $texts['msj_danger']];
         $this->db->trans_begin();
         if (!is_null($array_where)) {
             foreach ($array_where as $key => $value) {
@@ -88,27 +89,34 @@ class Catalogos_generales extends CI_Model {
             $this->db->delete($entidad);
             if ($this->db->trans_status() === FALSE) {
                 $this->db->trans_rollback();
-                return -1;
             } else {
                 $this->db->trans_commit();
-                return 1;
+                $result = [EnGen::KEYRESP_JSON => EnGen::RESP_SUCCESS, EnGen::KEYRESP_MESSAJE => $texts['msj_delete_succes']];
             }
         }
+        return $result;
     }
 
-    public function insert_registro_general($entidad, $datos) {
+    public function insert_registro_general($entidad, $datos, $texts = [], $identificador = null) {
+        $result = [EnGen::KEYRESP_JSON => EnGen::RESP_DANGER, EnGen::KEYRESP_MESSAJE => $texts['msj_danger']];
         $this->db->trans_begin();
         $this->db->insert($entidad, $datos);
+        if (!is_null($identificador)) {
+            $datos[$identificador] = $this->db->insert_id();
+        }
+
         if ($this->db->trans_status() === FALSE) {
             $this->db->trans_rollback();
-            return -1;
         } else {
             $this->db->trans_commit();
-            return 1;
+            $result = [EnGen::KEYRESP_JSON => EnGen::RESP_SUCCESS, EnGen::KEYRESP_MESSAJE => $texts['msj_insert_succes']];
+            $result[EnGen::KEYRESP_DATA] = $datos;
         }
+        return $result;
     }
 
-    public function update_registro_general($entidad, $data, $array_where) {
+    public function update_registro_general($entidad, $data, $array_where, $texts = []) {
+        $result = [EnGen::KEYRESP_JSON => EnGen::RESP_DANGER, EnGen::KEYRESP_MESSAJE => $texts['msj_danger']];
         $this->db->trans_begin();
         foreach ($array_where as $key => $value) {
             if (is_array($value)) {
@@ -122,11 +130,11 @@ class Catalogos_generales extends CI_Model {
 //        pr($this->db->last_query());
         if ($this->db->trans_status() === FALSE) {
             $this->db->trans_rollback();
-            return -1;
         } else {
             $this->db->trans_commit();
-            return 1;
+            $result = [EnGen::KEYRESP_JSON => EnGen::RESP_SUCCESS, EnGen::KEYRESP_MESSAJE => $texts['msj_update_succes']];
         }
+        return $result;
     }
 
 }

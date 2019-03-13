@@ -15,17 +15,24 @@ class MY_Controller extends CI_Controller {
 //        $this->lang->load('interface', 'spanish');
 //        $this->load->config('general');
         $this->load->library('niveles_acceso');
-        $this->load->library('En_catalogo_textos');
+        $this->load->library('EnGen');
 
         $usuario = $this->get_datos_sesion(En_datos_sesion::ID_USER); //Identificador del usuario
+        $this->load->model('Menu_model', 'menu');
         if (!is_null($usuario)) {
-            $this->load->model('Menu_model', 'menu');
             $accesos = $this->menu->get_modulos_acceso($usuario); //Obtiene el menu o los niveles de acceso
-            $this->niveles_acceso->setModulos($accesos);
-            $this->template->setMenu($this->niveles_acceso->getMenu()); //Asigna y obtiene el menu generado
         } else {
+            $accesos = $this->menu->get_modulos_acceso(null); //Obtiene el menu o los niveles de acceso
 //            $menu = $this->menu->get_modulos_acceso(null); //Obtiene el menu 
         }
+//        pr($usuario);
+        $this->niveles_acceso->setModulos($accesos);
+
+        $config_extra = $this->menu->get_config_extra_modulos($this->niveles_acceso->getCvesModulosAcceso()); //Las claves de los modulos que tienen acceso al sistema
+        $this->niveles_acceso->setGeneraConfiguaracionExtra($config_extra);//Genera el formato de la configuración extra de los permisos para cada modulo
+//        pr($this->niveles_acceso->getConfiguaracionExtra());
+        $this->template->setMenu($this->niveles_acceso->getMenu()); //Asigna y obtiene el menu generado
+//        pr($accesos);
     }
 
     /**
@@ -35,7 +42,7 @@ class MY_Controller extends CI_Controller {
      * @obtiene el array de los datos de session
      */
     public function get_datos_sesion($busqueda_especifica = '*') {
-        $data_usuario = $this->session->userdata('ingenia')['usuario'];
+        $data_usuario = $this->session->userdata(EnGen::KEYSESION_DATA)[EnGen::KEYSESIONCOMF_USUARIO];
         if ($busqueda_especifica == '*') {
             return $data_usuario;
         } else {
